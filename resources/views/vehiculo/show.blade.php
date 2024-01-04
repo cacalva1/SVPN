@@ -1,17 +1,16 @@
-@extends('layouts.app')
-
-@section('template_title')
-    {{ $vehiculo->name ?? "{{ __('Show') Vehiculo" }}
-@endsection
-
+@extends('adminlte::page')
+@section('title', 'Vehículo')
+@section('content_header')
+    <h1>Vehículo</h1>
+@stop
 @section('content')
-    <section class="content container-fluid">
+<section class="content container-fluid">
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header">
                         <div class="float-left">
-                            <span class="card-title">{{ __('Show') }} Vehiculo</span>
+                            <span class="card-title">{{ __('Detalle') }} Vehículo</span>
                         </div>
                         <div class="float-right">
                             <a class="btn btn-primary" href="{{ route('vehiculos.index') }}"> {{ __('Back') }}</a>
@@ -70,4 +69,16 @@
             </div>
         </div>
     </section>
-@endsection
+@stop
+
+@section('css')
+    <link rel="stylesheet" href="/css/admin_custom.css">
+@stop
+
+@section('js')
+    <script> console.log('Hi!'); </script>
+@stop
+
+
+
+
