@@ -20,6 +20,7 @@ Route::get('/', function () {
 Auth::routes();
 Route::resource('vehiculos', App\Http\Controllers\VehiculoController::class)->middleware('auth');
 Route::resource('dependencias', App\Http\Controllers\DependenciaController::class);
+Route::resource('policias', App\Http\Controllers\PoliciaController::class);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Auth::routes();

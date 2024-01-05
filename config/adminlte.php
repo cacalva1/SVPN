@@ -331,7 +331,7 @@ return [
         ],
         [
             'text' => 'Personal',
-            'url'  => 'personal',
+            'url'  => 'policias',
             'icon' => 'fas fa-fw fa-user',
         ],
         [
