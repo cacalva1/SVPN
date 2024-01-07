@@ -1,36 +1,68 @@
 <div class="box box-info padding-1">
     <div class="box-body">
-        
+
         <div class="form-group">
-            {{ Form::label('dependencia') }}
-            {{ Form::text('dependencia', $dependencia->dependencia, ['class' => 'form-control' . ($errors->has('dependencia') ? ' is-invalid' : ''), 'placeholder' => 'Dependencia']) }}
-            {!! $errors->first('dependencia', '<div class="invalid-feedback">:message</div>') !!}
+            <label for="provincia">Provincia:</label>
+            <input type="text" class="form-control input-lg" name="provincia" id="provincia"
+                value="{{ $dependencia->provincia }}" required oninput="this.value = this.value.toUpperCase()">
+            <!--<input type="hidden" id="dependenciaId" name="dependenciaId" value="">-->
         </div>
         <div class="form-group">
-            {{ Form::label('idProvincia') }}
-            {{ Form::text('idProvincia', $dependencia->idProvincia, ['class' => 'form-control' . ($errors->has('idProvincia') ? ' is-invalid' : ''), 'placeholder' => 'Idprovincia']) }}
-            {!! $errors->first('idProvincia', '<div class="invalid-feedback">:message</div>') !!}
+            {{ Form::label('cod_circuito') }}
+            {{ Form::text('cod_circuito', $dependencia->cod_circuito, ['class' => 'form-control' . ($errors->has('cod_circuito') ? ' is-invalid' : ''), 'placeholder' => 'Cod Circuito']) }}
+            {!! $errors->first('cod_circuito', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="form-group">
-            {{ Form::label('idParroquia') }}
-            {{ Form::text('idParroquia', $dependencia->idParroquia, ['class' => 'form-control' . ($errors->has('idParroquia') ? ' is-invalid' : ''), 'placeholder' => 'Idparroquia']) }}
-            {!! $errors->first('idParroquia', '<div class="invalid-feedback">:message</div>') !!}
+            {{ Form::label('cod_distrito') }}
+            {{ Form::text('cod_distrito', $dependencia->cod_distrito, ['class' => 'form-control' . ($errors->has('cod_distrito') ? ' is-invalid' : ''), 'placeholder' => 'Cod Distrito']) }}
+            {!! $errors->first('cod_distrito', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="form-group">
-            {{ Form::label('idDistrito') }}
-            {{ Form::text('idDistrito', $dependencia->idDistrito, ['class' => 'form-control' . ($errors->has('idDistrito') ? ' is-invalid' : ''), 'placeholder' => 'Iddistrito']) }}
-            {!! $errors->first('idDistrito', '<div class="invalid-feedback">:message</div>') !!}
+            {{ Form::label('cod_subcircuito') }}
+            {{ Form::text('cod_subcircuito', $dependencia->cod_subcircuito, ['class' => 'form-control' . ($errors->has('cod_subcircuito') ? ' is-invalid' : ''), 'placeholder' => 'Cod Subcircuito']) }}
+            {!! $errors->first('cod_subcircuito', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="form-group">
-            {{ Form::label('idCircuito') }}
-            {{ Form::text('idCircuito', $dependencia->idCircuito, ['class' => 'form-control' . ($errors->has('idCircuito') ? ' is-invalid' : ''), 'placeholder' => 'Idcircuito']) }}
-            {!! $errors->first('idCircuito', '<div class="invalid-feedback">:message</div>') !!}
+            {{ Form::label('estado') }}
+            {{ Form::text('estado', $dependencia->estado, ['class' => 'form-control' . ($errors->has('estado') ? ' is-invalid' : ''), 'placeholder' => 'Estado']) }}
+            {!! $errors->first('estado', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="form-group">
-            {{ Form::label('idSubcircuito') }}
-            {{ Form::text('idSubcircuito', $dependencia->idSubcircuito, ['class' => 'form-control' . ($errors->has('idSubcircuito') ? ' is-invalid' : ''), 'placeholder' => 'Idsubcircuito']) }}
-            {!! $errors->first('idSubcircuito', '<div class="invalid-feedback">:message</div>') !!}
+            {{ Form::label('nombre_circuito') }}
+            {{ Form::text('nombre_circuito', $dependencia->nombre_circuito, ['class' => 'form-control' . ($errors->has('nombre_circuito') ? ' is-invalid' : ''), 'placeholder' => 'Nombre Circuito']) }}
+            {!! $errors->first('nombre_circuito', '<div class="invalid-feedback">:message</div>') !!}
         </div>
+        <div class="form-group">
+            {{ Form::label('nombre_distrito') }}
+            {{ Form::text('nombre_distrito', $dependencia->nombre_distrito, ['class' => 'form-control' . ($errors->has('nombre_distrito') ? ' is-invalid' : ''), 'placeholder' => 'Nombre Distrito']) }}
+            {!! $errors->first('nombre_distrito', '<div class="invalid-feedback">:message</div>') !!}
+        </div>
+        <div class="form-group">
+            {{ Form::label('nombre_subcircuito') }}
+            {{ Form::text('nombre_subcircuito', $dependencia->nombre_subcircuito, ['class' => 'form-control' . ($errors->has('nombre_subcircuito') ? ' is-invalid' : ''), 'placeholder' => 'Nombre Subcircuito']) }}
+            {!! $errors->first('nombre_subcircuito', '<div class="invalid-feedback">:message</div>') !!}
+        </div>
+        <div class="form-group">
+            {{ Form::label('num_circuitos') }}
+            {{ Form::text('num_circuitos', $dependencia->num_circuitos, ['class' => 'form-control' . ($errors->has('num_circuitos') ? ' is-invalid' : ''), 'placeholder' => 'Num Circuitos']) }}
+            {!! $errors->first('num_circuitos', '<div class="invalid-feedback">:message</div>') !!}
+        </div>
+        <div class="form-group">
+            {{ Form::label('num_distritos') }}
+            {{ Form::text('num_distritos', $dependencia->num_distritos, ['class' => 'form-control' . ($errors->has('num_distritos') ? ' is-invalid' : ''), 'placeholder' => 'Num Distritos']) }}
+            {!! $errors->first('num_distritos', '<div class="invalid-feedback">:message</div>') !!}
+        </div>
+        <div class="form-group">
+            {{ Form::label('num_subcircuitos') }}
+            {{ Form::text('num_subcircuitos', $dependencia->num_subcircuitos, ['class' => 'form-control' . ($errors->has('num_subcircuitos') ? ' is-invalid' : ''), 'placeholder' => 'Num Subcircuitos']) }}
+            {!! $errors->first('num_subcircuitos', '<div class="invalid-feedback">:message</div>') !!}
+        </div>
+        <div class="form-group">
+            {{ Form::label('parroquia') }}
+            {{ Form::text('parroquia', $dependencia->parroquia, ['class' => 'form-control' . ($errors->has('parroquia') ? ' is-invalid' : ''), 'placeholder' => 'Parroquia']) }}
+            {!! $errors->first('parroquia', '<div class="invalid-feedback">:message</div>') !!}
+        </div>
+
 
     </div>
     <div class="box-footer mt20">

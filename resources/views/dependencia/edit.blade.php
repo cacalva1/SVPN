@@ -1,9 +1,10 @@
-@extends('layouts.app')
+@extends('adminlte::page')
 
-@section('template_title')
-    {{ __('Update') }} Dependencia
-@endsection
+@section('title', 'Dependencia')
 
+@section('content_header')
+    <h1>Dependencia</h1>
+@stop
 @section('content')
     <section class="content container-fluid">
         <div class="">
@@ -28,4 +29,14 @@
             </div>
         </div>
     </section>
-@endsection
+@stop
+
+@section('css')
+    <link rel="stylesheet" href="/css/admin_custom.css">
+@stop
+
+@section('js')
+    <script> console.log('Hi!'); </script>
+@stop
+
+

@@ -1,6 +1,6 @@
+
 <div class="box box-info padding-1">
-    <div class="box-body">
-        
+    <div class="box-body">     
         <div class="form-group">
             {{ Form::label('cedula') }}
             {{ Form::text('cedula', $policia->cedula, ['class' => 'form-control' . ($errors->has('cedula') ? ' is-invalid' : ''), 'placeholder' => 'Cedula']) }}
@@ -88,5 +88,6 @@
     </div>
     <div class="box-footer mt20">
         <button type="submit" class="btn btn-primary">{{ __('Submit') }}</button>
+        <a href="{{route('policias.index')}}" class="btn btn-danger">Cancelar</a>
     </div>
 </div>

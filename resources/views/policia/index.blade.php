@@ -4,7 +4,7 @@
 <h1>Personal Policial</h1>
 <div class="float-right">
                                 <a href="{{ route('policias.create') }}" class="btn btn-primary btn-sm float-right"  data-placement="left">
-                                  {{ __('Create New') }}
+                                  {{ __('Nuevo') }}
                                 </a>
                               </div>
 @stop

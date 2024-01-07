@@ -14,11 +14,9 @@
                 @includeif('partials.errors')
 
                 <div class="card card-default">
-                    <div class="card-header">
-                        <span class="card-title">{{ __('Create') }} Policia</span>
-                    </div>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('policias.store') }}"  role="form" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('policias.store') }}" role="form"
+                            enctype="multipart/form-data">
                             @csrf
 
                             @include('policia.form')
@@ -27,13 +25,16 @@
                     </div>
                 </div>
             </div>
+
         </div>
     </section>
-@endsection
+@stop
+
 @section('css')
     <link rel="stylesheet" href="/css/admin_custom.css">
 @stop
-
-@section('js')
-    <script> console.log('Hi!'); </script>
+@section('css')
+    <script>
+        console.log('Hi!');
+    </script>
 @stop
