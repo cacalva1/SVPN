@@ -1,10 +1,8 @@
-@extends('adminlte::page')
+@extends('layouts.app')
 
-@section('title', 'Vehículos')
-
-@section('content_header')
-    <h1>Vehículos</h1>
-@stop
+@section('template_title')
+    {{ __('Create') }} Solicitud Mantenimiento
+@endsection
 
 @section('content')
     <section class="content container-fluid">
@@ -15,14 +13,14 @@
 
                 <div class="card card-default">
                     <div class="card-header">
-                        <span class="card-title">{{ __('Crear') }} Vehiculo</span>
+                        <span class="card-title">{{ __('Create') }} Solicitud Mantenimiento</span>
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('vehiculos.store') }}" role="form"
+                        <form method="POST" action="{{ route('solicitud-mantenimientos.store') }}" role="form"
                             enctype="multipart/form-data">
                             @csrf
 
-                            @include('vehiculo.form')
+                            @include('solicitud-mantenimiento.form')
 
                         </form>
                     </div>
@@ -30,13 +28,4 @@
             </div>
         </div>
     </section>
-@stop
-@section('css')
-    <link rel="stylesheet" href="/css/admin_custom.css">
-@stop
-
-@section('js')
-    <script>
-        console.log('Hi!');
-    </script>
-@stop
+@endsection

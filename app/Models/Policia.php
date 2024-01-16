@@ -37,7 +37,6 @@ class Policia extends Model
 		'ciudad_nacimiento' => 'required',
 		'celular' => 'required',
 		'rango' => 'required',
-		'id_dependencia' => 'required',
 		'rol' => 'required',
 		'estado' => 'required',
     ];
@@ -49,7 +48,7 @@ class Policia extends Model
      *
      * @var array
      */
-    protected $fillable = ['cedula','nombres','apellidos','fecha_nacimiento','tipo_sangre','ciudad_nacimiento','celular','rango','id_dependencia','rol','estado'];
+    protected $fillable = ['cedula','nombres','apellidos','fecha_nacimiento','tipo_sangre','ciudad_nacimiento','celular','rango','rol','estado'];
 
 
 

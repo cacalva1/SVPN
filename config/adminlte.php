@@ -259,6 +259,7 @@ return [
     'register_url' => 'register',
     'password_reset_url' => 'password/reset',
     'password_email_url' => 'password/email',
+    'sugerencia_url' => 'sugerencia/create',
     'profile_url' => false,
 
     /*
@@ -332,6 +333,21 @@ return [
         [
             'text' => 'Personal',
             'url'  => 'policias',
+            'icon' => 'fas fa-fw fa-user',
+        ],
+        [
+            'text' => 'Personal-Subcircuito',
+            'url'  => 'PersonalSubcircuito',
+            'icon' => 'fas fa-fw fa-user',
+        ],
+        [
+            'text' => 'Vehiculo-Subcircuito',
+            'url'  => 'VehiculoSubcircuito',
+            'icon' => 'fas fa-fw fa-user',
+        ],
+          [
+            'text' => 'Mantenimiento',
+            'url'  => 'SolicitudMantenimiento/1',
             'icon' => 'fas fa-fw fa-user',
         ],
         [

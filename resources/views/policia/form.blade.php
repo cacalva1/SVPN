@@ -70,11 +70,6 @@
 
                     </div>
         <div class="form-group">
-            {{ Form::label('id_dependencia') }}
-            {{ Form::text('id_dependencia', $policia->id_dependencia, ['class' => 'form-control' . ($errors->has('id_dependencia') ? ' is-invalid' : ''), 'placeholder' => 'Id Dependencia']) }}
-            {!! $errors->first('id_dependencia', '<div class="invalid-feedback">:message</div>') !!}
-        </div>
-        <div class="form-group">
             {{ Form::label('rol') }}
             {{ Form::text('rol', $policia->rol, ['class' => 'form-control' . ($errors->has('rol') ? ' is-invalid' : ''), 'placeholder' => 'Rol']) }}
             {!! $errors->first('rol', '<div class="invalid-feedback">:message</div>') !!}
