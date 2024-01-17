@@ -26,8 +26,8 @@ Route::get('sugerencias', [App\Http\Controllers\SugerenciumController::class, 'c
 Route::resource('reporte', App\Http\Controllers\SugerenciumController::class);
 Route::post('reporte', [App\Http\Controllers\SugerenciumController::class, 'reportes'])->name('reporte.reportes');
 Route::get('subcircuitos/{categoria_id}', [App\Http\Controllers\SugerenciumController::class, 'getSubcircuitos']);
-
-
+Route::get('generate-pdf', [App\Http\Controllers\SugerenciumController::class, 'generatePDF'])->name('generate-pdf.generatePDF');
+;
 
 //Route::resource('PersonalSubcircuito', App\Http\Controllers\PersonalSubcircuitoController::class);
 Route::get('PersonalSubcircuito', [App\Http\Controllers\PersonalSubcircuitoController::class, 'index']);

@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use App\Models\Sugerencium;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Exports\FormularioExport;
+use Maatwebsite\Excel\Facades\Excel;
 use App\Models\Dependencia;
+use PDF;
 
 /**
  * Class SugerenciumController
@@ -18,6 +21,20 @@ class SugerenciumController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+
+    public function generatePDF()
+    {
+        $data = DB::select('select count(*) contador,s.tipo, dep.nombre_circuito, dep.nombre_subcircuito 
+    from sugerencia s , dependencias dep where s.cod_circuito = dep.cod_circuito
+    and s.cod_subcircuito = dep.cod_subcircuito 
+         group by nombre_circuito,tipo, nombre_subcircuito');
+
+        $pdf = PDF::loadView('sugerencium.reporte', compact('data'));
+
+        return $pdf->download('informe.pdf');
+    }
+
     public function index(Request $request)
     {
 
@@ -27,7 +44,7 @@ class SugerenciumController extends Controller
         $sugerencia = DB::select('
     select ? as fecha_in  ,  ?  as fecha_sal,count(*) contador,s.tipo, dep.nombre_circuito, dep.nombre_subcircuito 
     from sugerencia s , dependencias dep where s.cod_circuito = dep.cod_circuito
-    and s.cod_subcircuito = dep.cod_subcircuito and s.fecha_solicitud >= ? and  s.fecha_solicitud <=?
+    and s.cod_subcircuito = dep.cod_subcircuito and s.fecha_solicitud between ? and ?
          group by nombre_circuito,tipo, nombre_subcircuito', [$v_ini, $v_fin, $v_ini, $v_fin]);
         return view('sugerencium.index', compact('sugerencia', 'v_ini', 'v_fin'));
     }
@@ -40,7 +57,7 @@ class SugerenciumController extends Controller
         $sugerencia = DB::select('
     select ? as fecha_in  ,  ?  as fecha_sal,count(*) contador,s.tipo, dep.nombre_circuito, dep.nombre_subcircuito 
     from sugerencia s , dependencias dep where s.cod_circuito = dep.cod_circuito
-    and s.cod_subcircuito = dep.cod_subcircuito and s.fecha_solicitud >= ? and  s.fecha_solicitud <=?
+    and s.cod_subcircuito = dep.cod_subcircuito and s.fecha_solicitud between ?   and ?
          group by nombre_circuito,tipo, nombre_subcircuito', [$v_ini, $v_fin, $v_ini, $v_fin]);
         return view('sugerencium.index', compact('sugerencia', 'v_ini', 'v_fin'));
     }

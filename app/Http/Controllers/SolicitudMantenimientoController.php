@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Policia;
 use App\Models\Vehiculo;
 use Illuminate\Support\Facades\DB;
+
 /**
  * Class SolicitudMantenimientoController
  * @package App\Http\Controllers
@@ -18,13 +19,17 @@ class SolicitudMantenimientoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-      public function index($id)
+    public function index($id)
     {
         $policia = Policia::findOrFail($id);
-        $vehiculo = Vehiculo::findOrFail($id);
-        $solicitudMantenimientos  = DB::select('select * from solicitud_mantenimiento where policia_id = '.$id);
-        return view('solicitud-mantenimiento.index', compact('policia', 'vehiculo','solicitudMantenimientos'));
-        
+        $vehiculo = DB::selectOne('select * from mantenimiento.personal_subcircuitos s, mantenimiento.policias p, mantenimiento.vehiculo_subcircuito v,
+        mantenimiento.vehiculos vv 
+        where p.id = s.policia_id
+        and  s.dependencia_id  = v.dependencia_id
+        and vv.id = v.vehiculo_id  =? ', [$id]); //Vehiculo::findOrFail($id);
+        $solicitudMantenimientos = DB::select('select * from solicitud_mantenimiento where policia_id =? ', [$id]);
+        return view('solicitud-mantenimiento.index', compact('policia', 'vehiculo', 'solicitudMantenimientos'));
+
     }
 
     /**
@@ -46,7 +51,7 @@ class SolicitudMantenimientoController extends Controller
      */
     public function store(Request $request)
     {
-     
+
     }
 
     /**
@@ -57,7 +62,7 @@ class SolicitudMantenimientoController extends Controller
      */
     public function show($id)
     {
-  
+
     }
 
     /**
@@ -78,22 +83,22 @@ class SolicitudMantenimientoController extends Controller
      * @param  SolicitudMantenimiento $solicitudMantenimiento
      * @return \Illuminate\Http\Response
      */
- public function update(Request $request, $id_vehiculo, $id_policia)
+    public function update(Request $request, $id_vehiculo, $id_policia)
     {
         $vehiculo = Vehiculo::findOrFail($id_vehiculo);
         $solicitud_id = $request->input('solicitudMantenimiento');
-       // Verificar si ya existe una asignación en la tabla vehiculo_subcircuito para el vehículo
+        // Verificar si ya existe una asignación en la tabla vehiculo_subcircuito para el vehículo
 
-            // Crear una nueva asignación en la tabla vehiculo_subcircuito
-            $solicitudMantenimiento = new SolicitudMantenimiento();
-            $solicitudMantenimiento->vehiculo_id = $id_vehiculo;
-            $solicitudMantenimiento->policia_id = $id_policia;
-            $solicitudMantenimiento->Kilometraje_actual = $request->input('kilometraje');
-            $solicitudMantenimiento->observaciones = $request->input('observaciones');
-            $solicitudMantenimiento->fecha_solicitud = $request->input('fechamantenimiento');
-            $solicitudMantenimiento->hora_solicitud = $request->input('horamantenimiento');
-            $solicitudMantenimiento->save();
-       return redirect('SolicitudMantenimiento'. '/' .$id_policia);
+        // Crear una nueva asignación en la tabla vehiculo_subcircuito
+        $solicitudMantenimiento = new SolicitudMantenimiento();
+        $solicitudMantenimiento->vehiculo_id = $id_vehiculo;
+        $solicitudMantenimiento->policia_id = $id_policia;
+        $solicitudMantenimiento->Kilometraje_actual = $request->input('kilometraje');
+        $solicitudMantenimiento->observaciones = $request->input('observaciones');
+        $solicitudMantenimiento->fecha_solicitud = $request->input('fechamantenimiento');
+        $solicitudMantenimiento->hora_solicitud = $request->input('horamantenimiento');
+        $solicitudMantenimiento->save();
+        return redirect('SolicitudMantenimiento' . '/' . $id_policia);
 
         //return redirect('SolicitudMantenimiento',['policia_id' =>$id_policia])->with('message',"Datos Guardados correctamente");
     }
@@ -103,10 +108,10 @@ class SolicitudMantenimientoController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Exception
      */
-       public function destroy($id)
+    public function destroy($id)
     {
         $solicitudMantenimiento = SolicitudMantenimiento::find($id);
-    
+
         return redirect('SolicitudMantenimiento/1')->with('success', 'Policia deleted successfully');
     }
 }

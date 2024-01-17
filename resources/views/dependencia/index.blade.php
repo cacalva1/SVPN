@@ -13,14 +13,11 @@
         <thead>
             <tr>
                 <th>Provincia</th>
-                <th>Num Distritos</th>
                 <th>Parroquia</th>
                 <th>Cod Distrito</th>
                 <th>Nombre Distrito</th>
-                <th>Num Circuitos</th>
                 <th>Cod Circuito</th>
                 <th>Nombre Circuito</th>
-                <th>Num Subcircuitos</th>
                 <th>Cod Subcircuito</th>
                 <th>Nombre Subcircuito</th>
                 <th>Estado</th>
@@ -31,14 +28,11 @@
             @foreach ($dependencias as $dependencia)
                 <tr>
                     <td>{{ $dependencia->provincia }}</td>
-                    <td>{{ $dependencia->num_distritos }}</td>
                     <td>{{ $dependencia->parroquia }}</td>
                     <td>{{ $dependencia->cod_distrito }}</td>
                     <td>{{ $dependencia->nombre_distrito }}</td>
-                    <td>{{ $dependencia->num_circuitos }}</td>
                     <td>{{ $dependencia->cod_circuito }}</td>
                     <td>{{ $dependencia->nombre_circuito }}</td>
-                    <td>{{ $dependencia->num_subcircuitos }}</td>
                     <td>{{ $dependencia->cod_subcircuito }}</td>
                     <td>{{ $dependencia->nombre_subcircuito }}</td>
                     <td>{{ $dependencia->estado }}</td>
