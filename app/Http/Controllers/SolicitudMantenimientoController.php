@@ -22,7 +22,7 @@ class SolicitudMantenimientoController extends Controller
     public function index($id)
     {
         $policia = Policia::findOrFail($id);
-        $vehiculo = DB::selectOne('select * from mantenimiento.personal_subcircuitos s, mantenimiento.policias p, mantenimiento.vehiculo_subcircuito v,
+        $vehiculo = DB::selectOne('select vv.* from mantenimiento.personal_subcircuitos s, mantenimiento.policias p, mantenimiento.vehiculo_subcircuito v,
         mantenimiento.vehiculos vv 
         where p.id = s.policia_id
         and  s.dependencia_id  = v.dependencia_id
