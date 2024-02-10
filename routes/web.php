@@ -18,9 +18,19 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+Route::resource('permisos', App\Http\Controllers\PermisoController::class)->names('permisos');
+;
+
+
+
+Route::resource('roles', App\Http\Controllers\RoleController::class)->names('roles')->middleware('auth');
 Route::resource('vehiculos', App\Http\Controllers\VehiculoController::class)->middleware('auth');
-Route::resource('dependencias', App\Http\Controllers\DependenciaController::class);
-Route::resource('policias', App\Http\Controllers\PoliciaController::class);
+Route::resource('dependencias', App\Http\Controllers\DependenciaController::class)->middleware('auth');
+Route::resource('policias', App\Http\Controllers\PoliciaController::class)->middleware('auth');
+Route::resource('dependencias', App\Http\Controllers\DependenciaController::class)->middleware('auth');
+Route::resource('users', App\Http\Controllers\UserController::class);
+Route::resource('usuarios', App\Http\Controllers\AsignarController::class)->names('asignar');
+Route::get('users', [App\Http\Controllers\UserController::class, 'index'])->name('users.index');
 Route::resource('sugerencia', App\Http\Controllers\SugerenciumController::class);
 Route::get('sugerencias', [App\Http\Controllers\SugerenciumController::class, 'create'])->name('sugerencia.create');
 Route::resource('reporte', App\Http\Controllers\SugerenciumController::class);

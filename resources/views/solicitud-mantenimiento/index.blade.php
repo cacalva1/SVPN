@@ -37,8 +37,7 @@
                                         <th>Hora Solicitud</th>
                                         <th>Kilometraje Actual</th>
                                         <th>Observaciones</th>
-                                        <th>Policia Id</th>
-                                        <th>Vehiculo Id</th>
+
 
                                         <th></th>
                                     </tr>
@@ -50,8 +49,7 @@
                                             <td>{{ $solicitudMantenimiento->hora_solicitud }}</td>
                                             <td>{{ $solicitudMantenimiento->Kilometraje_actual }}</td>
                                             <td>{{ $solicitudMantenimiento->observaciones }}</td>
-                                            <td>{{ $solicitudMantenimiento->policia_id }}</td>
-                                            <td>{{ $solicitudMantenimiento->vehiculo_id }}</td>
+
 
                                             <td>
 

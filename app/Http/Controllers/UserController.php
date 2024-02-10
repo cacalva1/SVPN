@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Policia;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
@@ -13,19 +14,21 @@ use Illuminate\Support\Facades\Validator;
  * Class PoliciaController
  * @package App\Http\Controllers
  */
-class PoliciaController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+
+
     public function index()
     {
-        $policias = Policia::paginate();
 
-        return view('policia.index', compact('policias'))
-            ->with('i', (request()->input('page', 1) - 1) * $policias->perPage());
+
+        $users = DB::select('select * from mantenimiento.users');
+        return view('user.index', compact('users'));
     }
 
     /**
@@ -35,8 +38,10 @@ class PoliciaController extends Controller
      */
     public function create()
     {
-        $policia = new Policia();
-        return view('policia.create', compact('policia'));
+
+
+        $user = new User();
+        return view('user.create', compact('user'));
     }
 
     /**
@@ -47,18 +52,14 @@ class PoliciaController extends Controller
      */
     public function store(Request $request)
     {
-        request()->validate(Policia::$rules);
+        //  request()->validate(User::$rules);
 
-        $policia = Policia::create($request->all());
-        dump($policia->id);
         $user = User::create([
             'name' => $request['name'],
             'email' => $request['email'],
             'password' => Hash::make($request['password']),
-            'persona_id' => $policia->id,
         ]);
-
-        return redirect()->route('policias.index')
+        return redirect()->route('users.index')
             ->with('success', 'Policia created successfully.');
     }
 
@@ -70,9 +71,9 @@ class PoliciaController extends Controller
      */
     public function show($id)
     {
-        $policia = Policia::find($id);
+        $user = User::find($id);
 
-        return view('policia.show', compact('policia'));
+        return view('user.show', compact('user'));
     }
 
     /**
@@ -83,11 +84,9 @@ class PoliciaController extends Controller
      */
     public function edit($id)
     {
-        $policia = Policia::find($id);
-        $user = DB::selectOne('select * from mantenimiento.users u , mantenimiento.policias p
-where u.persona_id = p.id  and u.persona_id = ? ', [$id]);
+        $user = User::find($id);
 
-        return view('policia.edit', compact('policia', 'user'));
+        return view('user.edit', compact('user'));
     }
 
     /**
@@ -97,23 +96,18 @@ where u.persona_id = p.id  and u.persona_id = ? ', [$id]);
      * @param  Policia $policia
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Policia $policia)
+    public function update(Request $request, User $user)
     {
-        request()->validate(Policia::$rules);
-        $policia->update($request->all());
-        $user = User::where('persona_id', $policia->id)->first();
+        //request()->validate(User::$rules);
+        $user = User::find($user->id);
         $user->name = $request->input('name');
         $user->email = $request->input('email');
-        /*Solo actualiza si tiene valor*/
-        if ($request->input('password') !== null) {
-            $user->password = Hash::make($request['password']);
-        }
-
+        $user->password = Hash::make($request['password']);
         $user->save();
+        //$user->update($request->all());
 
-
-        return redirect()->route('policias.index')
-            ->with('success', 'Policia updated successfully');
+        return redirect()->route('users.index')
+            ->with('success', 'Usuario actualizado correctamente');
     }
 
     /**
@@ -123,9 +117,9 @@ where u.persona_id = p.id  and u.persona_id = ? ', [$id]);
      */
     public function destroy($id)
     {
-        $policia = Policia::find($id)->delete();
+        $policia = User::find($id)->delete();
 
-        return redirect()->route('policias.index')
-            ->with('success', 'Policia deleted successfully');
+        return redirect()->route('users.index')
+            ->with('success', 'Usuario eliminado correctamente');
     }
 }

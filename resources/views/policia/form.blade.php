@@ -83,9 +83,7 @@
             {!! $errors->first('estado', '<div class="invalid-feedback">:message</div>') !!}
         </div>
 
+
     </div>
-    <div class="box-footer mt20">
-        <button type="submit" class="btn btn-primary">{{ __('Submit') }}</button>
-        <a href="{{ route('policias.index') }}" class="btn btn-danger">Cancelar</a>
-    </div>
+
 </div>

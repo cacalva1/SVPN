@@ -9,10 +9,6 @@
     </div>
 @stop
 @section('content')
-    <a href="{{ url('SolicitudMantenimiento/' . auth()->user()->id) }}">
-        <i class="fa fa-wrench"></i>
-        <span>Solicitud de mantenimiento</span>
-    </a>
     <table id="example" class="table table-striped table-bordered" style="width:100%">
         <thead>
             <tr>

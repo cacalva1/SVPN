@@ -293,12 +293,12 @@ return [
     'menu' => [
         // Navbar items:
         [
-            'type'         => 'navbar-search',
-            'text'         => 'search',
+            'type' => 'navbar-search',
+            'text' => 'search',
             'topnav_right' => true,
         ],
         [
-            'type'         => 'fullscreen-widget',
+            'type' => 'fullscreen-widget',
             'topnav_right' => true,
         ],
 
@@ -309,79 +309,104 @@ return [
         ],
         [
             'text' => 'blog',
-            'url'  => 'admin/blog',
-            'can'  => 'manage-blog',
+            'url' => 'admin/blog',
+            'can' => 'manage-blog',
         ],
         [
-            'text'        => 'pages',
-            'url'         => 'admin/pages',
-            'icon'        => 'far fa-fw fa-file',
-            'label'       => 4,
-            'label_color' => 'success',
+            'header' => 'USUARIOS',
+            'can' => 'Administrador configuracion',
         ],
-        ['header' => 'account_settings'],
+
+        [
+            'text' => 'Roles',
+            'route' => 'roles.index',
+            'icon' => 'far fa-fw fa-file',
+            'can' => 'Administrador configuracion',
+
+        ],
+
+
+        [
+            'text' => 'Permisos',
+            'route' => 'permisos.index',
+            'icon' => 'far fa-fw fa-file',
+            'can' => 'Administrador configuracion',
+        ],
+        [
+            'text' => 'Usuarios y Roles',
+            'route' => 'asignar.index',
+            'icon' => 'far fa-fw fa-file',
+            'can' => 'Administrador configuracion',
+        ],
+
+        ['header' => 'MODULOS GENERALES'],
+        [
+            'text' => 'Personal',
+            'url' => 'policias',
+            'icon' => 'fas fa-fw fa-user',
+            'can' => 'Administrador configuracion',
+        ],
         [
             'text' => 'Vehiculos',
-            'url'  => 'vehiculos',
+            'url' => 'vehiculos',
             'icon' => 'fas fa-fw fa-car',
+            'can' => 'Administrador configuracion',
         ],
         [
             'text' => 'Dependencias',
-            'url'  => 'dependencias',
+            'url' => 'dependencias',
             'icon' => 'fas fa-fw fa-users',
-        ],
-        [
-            'text' => 'Personal',
-            'url'  => 'policias',
-            'icon' => 'fas fa-fw fa-user',
+            'can' => 'Administrador configuracion',
         ],
         [
             'text' => 'Personal-Subcircuito',
-            'url'  => 'PersonalSubcircuito',
+            'url' => 'PersonalSubcircuito',
             'icon' => 'fas fa-fw fa-user',
+            'can' => 'Administrador configuracion',
         ],
         [
             'text' => 'Vehiculo-Subcircuito',
-            'url'  => 'VehiculoSubcircuito',
+            'url' => 'VehiculoSubcircuito',
             'icon' => 'fas fa-fw fa-user',
+            'can' => 'Administrador configuracion',
         ],
-          [
+        [
             'text' => 'Mantenimiento',
-            'url'  => 'SolicitudMantenimiento/1',
+            'url' => 'SolicitudMantenimiento/1',
             'icon' => 'fas fa-fw fa-user',
         ],
         [
             'text' => 'change_password',
-            'url'  => 'admin/settings',
+            'url' => 'admin/settings',
             'icon' => 'fas fa-fw fa-lock',
         ],
         [
-            'text'    => 'multilevel',
-            'icon'    => 'fas fa-fw fa-share',
+            'text' => 'multilevel',
+            'icon' => 'fas fa-fw fa-share',
             'submenu' => [
                 [
                     'text' => 'level_one',
-                    'url'  => '#',
+                    'url' => '#',
                 ],
                 [
-                    'text'    => 'level_one',
-                    'url'     => '#',
+                    'text' => 'level_one',
+                    'url' => '#',
                     'submenu' => [
                         [
                             'text' => 'level_two',
-                            'url'  => '#',
+                            'url' => '#',
                         ],
                         [
-                            'text'    => 'level_two',
-                            'url'     => '#',
+                            'text' => 'level_two',
+                            'url' => '#',
                             'submenu' => [
                                 [
                                     'text' => 'level_three',
-                                    'url'  => '#',
+                                    'url' => '#',
                                 ],
                                 [
                                     'text' => 'level_three',
-                                    'url'  => '#',
+                                    'url' => '#',
                                 ],
                             ],
                         ],
@@ -389,25 +414,25 @@ return [
                 ],
                 [
                     'text' => 'level_one',
-                    'url'  => '#',
+                    'url' => '#',
                 ],
             ],
         ],
         ['header' => 'labels'],
         [
-            'text'       => 'important',
+            'text' => 'important',
             'icon_color' => 'red',
-            'url'        => '#',
+            'url' => '#',
         ],
         [
-            'text'       => 'warning',
+            'text' => 'warning',
             'icon_color' => 'yellow',
-            'url'        => '#',
+            'url' => '#',
         ],
         [
-            'text'       => 'information',
+            'text' => 'information',
             'icon_color' => 'cyan',
-            'url'        => '#',
+            'url' => '#',
         ],
     ],
 
@@ -447,7 +472,7 @@ return [
 
     'plugins' => [
         'Datatables' => [
-            'active' => false,
+            'active' => true,
             'files' => [
                 [
                     'type' => 'js',
@@ -492,12 +517,12 @@ return [
             ],
         ],
         'Sweetalert2' => [
-            'active' => false,
+            'active' => true,
             'files' => [
                 [
                     'type' => 'js',
                     'asset' => false,
-                    'location' => '//cdn.jsdelivr.net/npm/sweetalert2@8',
+                    'location' => '//cdn.jsdelivr.net/npm/sweetalert2@11',
                 ],
             ],
         ],
