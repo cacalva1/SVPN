@@ -22,11 +22,11 @@
                </button>';
 
                 $config = [
-                    'language' => ['url' => 'http://localhost/sistemaVehicularPolicia/public/dist/js/es-Es.json'],
+                    'language' => ['url' => 'http://localhost/SVPN/public/dist/js/es-Es.json'],
                 ];
             @endphp
 
-            <x-adminlte-datatable id="table1" :heads="$heads" :config="$config">
+            <x-adminlte-datatable id="table1" :heads="$heads" :config="$config" class="table table-striped table-bordered">
                 @foreach ($users as $user)
                     <tr>
                         <td>{{ $user->id }}</td>
