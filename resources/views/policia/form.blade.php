@@ -62,11 +62,6 @@
         </div>
 
         <div class="form-group">
-            {{ Form::label('rol') }}
-            {{ Form::text('rol', $policia->rol, ['class' => 'form-control' . ($errors->has('rol') ? ' is-invalid' : ''), 'placeholder' => 'Rol']) }}
-            {!! $errors->first('rol', '<div class="invalid-feedback">:message</div>') !!}
-        </div>
-        <div class="form-group">
             <label for="tipo">Estado:</label>
             <select type="text" class="form-control" name="estado" id="estado">
                 <option value="Activo">Activo</option>

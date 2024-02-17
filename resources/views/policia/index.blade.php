@@ -23,7 +23,7 @@
     </div>
     <div class="card-body">
         @php
-        $heads = ['No', 'Cedula','Nombres','Apellidos','Fecha Nacimiento','Tipo Sangre','Ciudad Nacimiento','Celular','Rango','Rol','Estado', ['label' => 'Acciones', 'no-export' => true, 'width' => 15]];
+        $heads = ['No', 'Cedula','Nombres','Apellidos','Fecha Nacimiento','Tipo Sangre','Ciudad Nacimiento','Celular','Rango','Estado', ['label' => 'Acciones', 'no-export' => true, 'width' => 15]];
 
         $btnEdit = '';
         $btnDelete = '<button class="btn btn-xs btn-default text-danger mx-1 shadow" title="Delete">
@@ -50,7 +50,6 @@
                 <td>{{ $policia->ciudad_nacimiento }}</td>
                 <td>{{ $policia->celular }}</td>
                 <td>{{ $policia->rango }}</td>
-                <td>{{ $policia->rol }}</td>
                 <td>{{ $policia->estado }}</td>
                 <td>
                     <form action="{{ route('policias.destroy', $policia->id) }}" method="POST">

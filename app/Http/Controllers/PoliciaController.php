@@ -52,7 +52,6 @@ class PoliciaController extends Controller
         $request->validate(Policia::rules(), Policia::$customMessages);
 
         $policia = Policia::create($request->all());
-        dump($policia->id);
         $user = User::create([
             'name' => $request['name'],
             'email' => $request['email'],

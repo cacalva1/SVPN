@@ -39,15 +39,15 @@ class Policia extends Model
 		'tipo_sangre.required' => 'El campo tipo de sangre es obligatorio.',
 		'ciudad_nacimiento.required' => 'El campo ciudad de nacimiento es obligatorio.',
 		'celular.required' => 'El campo celular es obligatorio.',
-		'cedula.numeric' => 'El campo celular solo debe tener números.',
+		'celular.numeric' => 'El campo celular solo debe tener números.',
 		'rango.required' => 'El campo rango es obligatorio.',
-		'rol.required' => 'El campo rol es obligatorio.',
 		'estado.required' => 'El campo estado es obligatorio.',
+		'cedula.unique' => 'La cédula ya se encuentra registrada.',
 	];
     public static function rules()
     {
         return [
-            'cedula' => ['required','numeric','digits:10',new fun_valida_cedula],
+            'cedula' => ['required','numeric','digits:10',new fun_valida_cedula,'unique:policias'],
             'nombres' => 'required',
             'apellidos' => 'required',
             'fecha_nacimiento' => 'required|date',
@@ -55,7 +55,6 @@ class Policia extends Model
             'ciudad_nacimiento' => 'required',
             'celular' => ['required','numeric'],
             'rango' => 'required',
-            'rol' => 'required',
             'estado' => 'required',
         ];
     }
