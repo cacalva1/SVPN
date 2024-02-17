@@ -16,24 +16,16 @@
             {!! $errors->first('apellidos', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="form-group">
-            <label for="fecha_nacimiento">Fecha de nacimiento:</label>
-            <input type="date" class="form-control" name="fecha_nacimiento" id="fecha_nacimiento"
-                value="{{ $policia->fecha_nacimiento }}">
+            {{ Form::label('fecha_nacimiento', 'Fecha de nacimiento:') }}
+            {{ Form::date('fecha_nacimiento', $policia->fecha_nacimiento, ['class' => 'form-control' . ($errors->has('fecha_nacimiento') ? ' is-invalid' : '')]) }}
+            {!! $errors->first('fecha_nacimiento', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="form-group">
-            <label for="tipo_sangre">Tipo de sangre:</label>
-            <select type="text" class="form-control" name="tipo_sangre" id="tipo_sangre">
-                <option value="{{ $policia->tipo_sangre }}">{{ $policia->tipo_sangre }}</option>
-                <option value="A+">A+</option>
-                <option value="A-">A-</option>
-                <option value="B+">B+</option>
-                <option value="B-">B-</option>
-                <option value="AB+">AB+</option>
-                <option value="AB-">AB-</option>
-                <option value="O+">O+</option>
-                <option value="O-">O-</option>
-            </select>
+            {{ Form::label('tipo_sangre', 'Tipo de sangre:') }}
+            {{ Form::select('tipo_sangre', ['' => 'Selecciona Tipo de Sangre', 'A+' => 'A+', 'A-' => 'A-', 'B+' => 'B+', 'B-' => 'B-', 'AB+' => 'AB+', 'AB-' => 'AB-', 'O+' => 'O+', 'O-' => 'O-'], $policia->tipo_sangre, ['class' => 'form-control' . ($errors->has('tipo_sangre') ? ' is-invalid' : '')]) }}
+            {!! $errors->first('tipo_sangre', '<div class="invalid-feedback">:message</div>') !!}
         </div>
+
         <div class="form-group">
             {{ Form::label('ciudad_nacimiento') }}
             {{ Form::text('ciudad_nacimiento', $policia->ciudad_nacimiento, ['class' => 'form-control' . ($errors->has('ciudad_nacimiento') ? ' is-invalid' : ''), 'placeholder' => 'Ciudad Nacimiento']) }}
@@ -45,30 +37,30 @@
             {!! $errors->first('celular', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="form-group">
-            <label for="rango">Rango:</label>
-            <select type="text" class="form-control" name="rango" id="rango">
-                <option value="{{ $policia->rango }}">{{ $policia->rango }}</option>
-                <option value="Policia">Policía</option>
-                <option value="CaboSegundo">Cabo Segundo</option>
-                <option value="CaboPrimero">Cabo Primero</option>
-                <option value="SargentoSegundo">Sargento Segundo</option>
-                <option value="SargentoPrimero">Sargento Primero</option>
-                <option value="SuboficialSegundo">Suboficial Segundo</option>
-                <option value="SuboficialPrimero">Suboficial Primero</option>
-                <option value="SuboficialMayor">Suboficial Mayor</option>
-                <option value="SubtenientedePolicía">Subteniente de Policía</option>
-                <option value="TenientedePolicía">Teniente de Policía</option>
-                <option value="CapitandePolicía">Capitán de Policía</option>
-                <option value="MayordePolicía">Mayor de Policía</option>
-                <option value="TenienteCoroneldePolicía">Teniente Coronel de Policía</option>
-                <option value="CoroneldePolicía">Coronel de Policía</option>
-                <option value="GeneraldeDistrito">General de Distrito</option>
-                <option value="GeneralInspector">General Inspector</option>
-                <option value="GeneralSuperior">General Superior</option>
-
-            </select>
-
+            {{ Form::label('rango', 'Rango:') }}
+            {{ Form::select('rango', [
+        '' => 'Selecciona Rango',
+        'Policia' => 'Policía',
+        'CaboSegundo' => 'Cabo Segundo',
+        'CaboPrimero' => 'Cabo Primero',
+        'SargentoSegundo' => 'Sargento Segundo',
+        'SargentoPrimero' => 'Sargento Primero',
+        'SuboficialSegundo' => 'Suboficial Segundo',
+        'SuboficialPrimero' => 'Suboficial Primero',
+        'SuboficialMayor' => 'Suboficial Mayor',
+        'SubtenientedePolicía' => 'Subteniente de Policía',
+        'TenientedePolicía' => 'Teniente de Policía',
+        'CapitandePolicía' => 'Capitán de Policía',
+        'MayordePolicía' => 'Mayor de Policía',
+        'TenienteCoroneldePolicía' => 'Teniente Coronel de Policía',
+        'CoroneldePolicía' => 'Coronel de Policía',
+        'GeneraldeDistrito' => 'General de Distrito',
+        'GeneralInspector' => 'General Inspector',
+        'GeneralSuperior' => 'General Superior',
+    ], $policia->rango, ['class' => 'form-control' . ($errors->has('rango') ? ' is-invalid' : '')]) }}
+            {!! $errors->first('rango', '<div class="invalid-feedback">:message</div>') !!}
         </div>
+
         <div class="form-group">
             {{ Form::label('rol') }}
             {{ Form::text('rol', $policia->rol, ['class' => 'form-control' . ($errors->has('rol') ? ' is-invalid' : ''), 'placeholder' => 'Rol']) }}

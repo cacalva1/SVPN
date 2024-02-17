@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Utilities\fun_valida_cedula;
 use App\Models\Policia;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
@@ -47,7 +48,8 @@ class PoliciaController extends Controller
      */
     public function store(Request $request)
     {
-        request()->validate(Policia::$rules);
+
+        $request->validate(Policia::rules(), Policia::$customMessages);
 
         $policia = Policia::create($request->all());
         dump($policia->id);
@@ -99,7 +101,18 @@ where u.persona_id = p.id  and u.persona_id = ? ', [$id]);
      */
     public function update(Request $request, Policia $policia)
     {
-        request()->validate(Policia::$rules);
+        $validatedData = $request->validate([
+            'cedula' => ['required', new fun_valida_cedula],
+            'nombres' => 'required',
+            'apellidos' => 'required',
+            'fecha_nacimiento' => 'required',
+            'tipo_sangre' => 'required',
+            'ciudad_nacimiento' => 'required',
+            'celular' => 'required',
+            'rango' => 'required',
+            'rol' => 'required',
+            'estado' => 'required',
+        ]);
         $policia->update($request->all());
         $user = User::where('persona_id', $policia->id)->first();
         $user->name = $request->input('name');

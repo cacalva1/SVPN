@@ -19,10 +19,7 @@ Route::get('/', function () {
 
 Auth::routes();
 Route::resource('permisos', App\Http\Controllers\PermisoController::class)->names('permisos');
-;
-
-
-
+Route::get('/export', 'ExportController@export')->name('export');
 Route::resource('roles', App\Http\Controllers\RoleController::class)->names('roles')->middleware('auth');
 Route::resource('vehiculos', App\Http\Controllers\VehiculoController::class)->middleware('auth');
 Route::resource('dependencias', App\Http\Controllers\DependenciaController::class)->middleware('auth');
@@ -61,3 +58,4 @@ Route::get('/home', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
