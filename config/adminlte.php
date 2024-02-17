@@ -320,7 +320,7 @@ return [
         [
             'text' => 'Roles',
             'route' => 'roles.index',
-            'icon' => 'far fa-fw fa-file',
+            'icon' => 'fas fa-fw fa-user-tag',
             'can' => 'Administrador configuracion',
 
         ],
@@ -329,13 +329,13 @@ return [
         [
             'text' => 'Permisos',
             'route' => 'permisos.index',
-            'icon' => 'far fa-fw fa-file',
+            'icon' => 'fas fa-fw fa-lock',
             'can' => 'Administrador configuracion',
         ],
         [
             'text' => 'Usuarios y Roles',
             'route' => 'asignar.index',
-            'icon' => 'far fa-fw fa-file',
+            'icon' => 'fas fa-fw fa-user-cog',
             'can' => 'Administrador configuracion',
         ],
 
@@ -359,80 +359,21 @@ return [
             'can' => 'Administrador configuracion',
         ],
         [
-            'text' => 'Personal-Subcircuito',
+            'text' => 'Personal-Dependencia',
             'url' => 'PersonalSubcircuito',
-            'icon' => 'fas fa-fw fa-user',
+            'icon' => 'fas fa-fw fa-building',
             'can' => 'Administrador configuracion',
         ],
         [
-            'text' => 'Vehiculo-Subcircuito',
+            'text' => 'Vehiculo-Dependencia',
             'url' => 'VehiculoSubcircuito',
-            'icon' => 'fas fa-fw fa-user',
+            'icon' => 'fas fa-fw fa-building',
             'can' => 'Administrador configuracion',
         ],
         [
             'text' => 'Mantenimiento',
-            'url' => 'SolicitudMantenimiento/1',
-            'icon' => 'fas fa-fw fa-user',
-        ],
-        [
-            'text' => 'change_password',
-            'url' => 'admin/settings',
-            'icon' => 'fas fa-fw fa-lock',
-        ],
-        [
-            'text' => 'multilevel',
-            'icon' => 'fas fa-fw fa-share',
-            'submenu' => [
-                [
-                    'text' => 'level_one',
-                    'url' => '#',
-                ],
-                [
-                    'text' => 'level_one',
-                    'url' => '#',
-                    'submenu' => [
-                        [
-                            'text' => 'level_two',
-                            'url' => '#',
-                        ],
-                        [
-                            'text' => 'level_two',
-                            'url' => '#',
-                            'submenu' => [
-                                [
-                                    'text' => 'level_three',
-                                    'url' => '#',
-                                ],
-                                [
-                                    'text' => 'level_three',
-                                    'url' => '#',
-                                ],
-                            ],
-                        ],
-                    ],
-                ],
-                [
-                    'text' => 'level_one',
-                    'url' => '#',
-                ],
-            ],
-        ],
-        ['header' => 'labels'],
-        [
-            'text' => 'important',
-            'icon_color' => 'red',
-            'url' => '#',
-        ],
-        [
-            'text' => 'warning',
-            'icon_color' => 'yellow',
-            'url' => '#',
-        ],
-        [
-            'text' => 'information',
-            'icon_color' => 'cyan',
-            'url' => '#',
+            'url' => 'SolicitudMantenimiento',
+            'icon' => 'fas fa-fw fa-tools'
         ],
     ],
 

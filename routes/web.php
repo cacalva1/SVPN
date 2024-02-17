@@ -44,7 +44,7 @@ Route::put('PersonalSubcircuito/{id}', [App\Http\Controllers\PersonalSubcircuito
 Route::get('VehiculoSubcircuito', [App\Http\Controllers\VehiculoSubcircuitoController::class, 'index']);
 Route::get('VehiculoSubcircuito/{id}', [App\Http\Controllers\VehiculoSubcircuitoController::class, 'edit']);
 Route::put('VehiculoSubcircuito/{id}', [App\Http\Controllers\VehiculoSubcircuitoController::class, 'update'])->name('VehiculoSubcircuito.update');
-Route::get('SolicitudMantenimiento/{id}', [App\Http\Controllers\SolicitudMantenimientoController::class, 'index']);
+Route::get('SolicitudMantenimiento', [App\Http\Controllers\SolicitudMantenimientoController::class, 'index']);
 Route::put('SolicitudMantenimiento/{id_vehiculo}/{id_policia}', [App\Http\Controllers\SolicitudMantenimientoController::class, 'update'])->name('SolicitudMantenimiento.update');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

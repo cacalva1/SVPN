@@ -19,7 +19,7 @@ class SolicitudMantenimientoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($id)
+    public function index()
     {
 
         $id = auth()->user()->persona_id;

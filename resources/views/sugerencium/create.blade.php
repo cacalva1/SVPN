@@ -39,14 +39,16 @@
     <script>
         console.log('Hi!');
     </script>
+    
 @stop
 @if (session('mensaje'))
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10>
-                                                                        Swal.fire({
-                                                                            icon: 'success',
-                                                                            title: '¡Vehículo actualizado!',
-                                                                            showConfirmButton: false,
-                                                                            timer: 1500
-                                                                        });
-                                                                    </script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script>
+        Swal.fire({
+            icon: 'success',
+            title: '¡Vehículo actualizado!',
+            showConfirmButton: false,
+            timer: 1500
+        });
+    </script>
 @endif
