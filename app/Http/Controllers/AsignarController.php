@@ -92,6 +92,9 @@ class AsignarController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $usuarios = User::find($id)->delete();
+
+        return redirect()->route('asignar.index')
+            ->with('success', 'Permiso eliminado correctamente');
     }
 }

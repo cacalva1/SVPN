@@ -29,9 +29,15 @@ class SolicitudMantenimientoController extends Controller
         where p.id = s.policia_id
         and  s.dependencia_id  = v.dependencia_id
         and vv.id = v.vehiculo_id  and s.policia_id =? ', [$id]); //Vehiculo::findOrFail($id);
+        if (!$vehiculo) {
+            // Manejar el caso en que el vehículo es nulo
+            return response()->json(['error' => 'El usuario no esta atado a ninguna dependencia o no hay un vehiculo disponible. Por favor contactarse con el administrador.'], 404);
+        }
         $solicitudMantenimientos = DB::select('select * from solicitud_mantenimiento where policia_id =? ', [$id]);
         return view('solicitud-mantenimiento.index', compact('policia', 'vehiculo', 'solicitudMantenimientos'));
 
+
+        
     }
 
     /**
@@ -90,7 +96,6 @@ class SolicitudMantenimientoController extends Controller
         $vehiculo = Vehiculo::findOrFail($id_vehiculo);
         $solicitud_id = $request->input('solicitudMantenimiento');
         // Verificar si ya existe una asignación en la tabla vehiculo_subcircuito para el vehículo
-
         // Crear una nueva asignación en la tabla vehiculo_subcircuito
         $solicitudMantenimiento = new SolicitudMantenimiento();
         $solicitudMantenimiento->vehiculo_id = $id_vehiculo;
@@ -100,7 +105,7 @@ class SolicitudMantenimientoController extends Controller
         $solicitudMantenimiento->fecha_solicitud = $request->input('fechamantenimiento');
         $solicitudMantenimiento->hora_solicitud = $request->input('horamantenimiento');
         $solicitudMantenimiento->save();
-        return redirect('SolicitudMantenimiento' . '/' . $id_policia);
+        return redirect('SolicitudMantenimiento') ->with('success', 'Solicitud creada correctamente.');
 
         //return redirect('SolicitudMantenimiento',['policia_id' =>$id_policia])->with('message',"Datos Guardados correctamente");
     }

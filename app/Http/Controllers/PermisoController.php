@@ -93,6 +93,9 @@ class PermisoController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $permisos = Permiso::find($id)->delete();
+
+        return redirect()->route('permisos.index')
+            ->with('success', 'Permiso eliminado correctamente');
     }
 }
