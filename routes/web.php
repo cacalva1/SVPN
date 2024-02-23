@@ -34,7 +34,14 @@ Route::resource('reporte', App\Http\Controllers\SugerenciumController::class);
 Route::post('reporte', [App\Http\Controllers\SugerenciumController::class, 'reportes'])->name('reporte.reportes');
 Route::get('subcircuitos/{categoria_id}', [App\Http\Controllers\SugerenciumController::class, 'getSubcircuitos']);
 Route::get('generate-pdf', [App\Http\Controllers\SugerenciumController::class, 'generatePDF'])->name('generate-pdf.generatePDF');
-;
+
+
+Route::resource('pertrechos', App\Http\Controllers\PertrechoController::class)->middleware('auth');
+Route::resource('personal-pertrechos', App\Http\Controllers\PersonalPertrechoController::class)->middleware('auth');
+Route::get('PersonalPertrechos', [App\Http\Controllers\PersonalPertrechoController::class, 'index']);
+Route::get('PersonalPertrechos/{id}', [App\Http\Controllers\PersonalPertrechoController::class, 'edit']);
+Route::put('PersonalPertrechos/{id}', [App\Http\Controllers\PersonalPertrechoController::class, 'update'])->name('PersonalPertrechos.update');
+
 
 //Route::resource('PersonalSubcircuito', App\Http\Controllers\PersonalSubcircuitoController::class);
 Route::get('PersonalSubcircuito', [App\Http\Controllers\PersonalSubcircuitoController::class, 'index']);

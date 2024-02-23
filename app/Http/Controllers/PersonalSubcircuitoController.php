@@ -32,7 +32,7 @@ on d.id = dependencia_id');
         $personalSubcircuito = PersonalSubcircuito::where('user_id', $policia->id)->first();
         $dependencias = Dependencia::all();
         
-        return view('modulos.PersonalSubcircuito', compact('policias', 'personalSubcircuito', 'dependencias'));
+        return view('modulos.PersonalPertrechos', compact('policias', 'personalSubcircuito', 'dependencias'));
     }
 
     public function update(Request $request, $id)

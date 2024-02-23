@@ -341,6 +341,22 @@ return [
 
         ['header' => 'MODULOS GENERALES'],
         [
+            'text' => 'Pertrechos',
+            'url' => 'pertrechos',
+            'icon' => 'fas fa-fw fa-user-cog',
+        ],
+        [
+            'text' => 'Personal-Pertrecho',
+            'url' => 'personal-pertrechos',
+            'icon' => 'fas fa-fw fa-building',
+        ],
+        [
+            'text' => 'Personal-Pertrecho',
+            'url' => 'personal-pertrechos',
+            'icon' => 'fas fa-fw fa-building',
+        ],
+
+        [
             'text' => 'Personal',
             'url' => 'policias',
             'icon' => 'fas fa-fw fa-user',
