@@ -35,9 +35,9 @@ on d.id = dependencia_id');
 
     public function edit($id)
     {
-        $vehiculo = Vehiculos::findOrFail($id);
+        $vehiculo = Vehiculo::findOrFail($id);
         $vehiculoSubcircuito = VehiculoSubcircuito::where('user_id', $vehiculo->id)->first();
-        $dependencias = Dependencias::all();
+        $dependencias = Dependencia::all();
 
         return view('vehiculo-subcircuito.index', compact('vehiculo','vehiculoSubcircuito' ,'dependencias'));
     }

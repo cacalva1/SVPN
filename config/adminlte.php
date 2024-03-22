@@ -344,16 +344,19 @@ return [
             'text' => 'Pertrechos',
             'url' => 'pertrechos',
             'icon' => 'fas fa-fw fa-user-cog',
+            'can' => 'configuracion',
         ],
         [
-            'text' => 'Personal-Pertrecho',
+            'text' => 'Personal-Pertrechos',
             'url' => 'personal-pertrechos',
             'icon' => 'fas fa-fw fa-building',
+            'can' => 'configuracion',
         ],
         [
-            'text' => 'Personal-Pertrecho',
-            'url' => 'personal-pertrechos',
+            'text' => 'Reporte-Pertrechos',
+            'url' => 'reportes',
             'icon' => 'fas fa-fw fa-building',
+            'can' => 'configuracion',
         ],
 
         [
@@ -380,16 +383,31 @@ return [
             'icon' => 'fas fa-fw fa-building',
             'can' => 'Administrador configuracion',
         ],
+        
         [
             'text' => 'Vehiculo-Dependencia',
             'url' => 'VehiculoSubcircuito',
             'icon' => 'fas fa-fw fa-building',
             'can' => 'Administrador configuracion',
         ],
-        [
+      
+        [   
             'text' => 'Mantenimiento',
             'url' => 'SolicitudMantenimiento',
-            'icon' => 'fas fa-fw fa-tools'
+            'icon' => 'fas fa-fw fa-tools',
+            'can' => 'Policia configuracion',
+        ],
+        [   
+            'text' => 'Solicitud-Combustible',
+            'url' => 'OrdenCombustible',
+            'icon' => 'fas fa-fw fa-tools',
+            'can' => 'Policia configuracion',
+        ],
+        [   
+            'text' => 'Ordenes Combustible',
+            'url' => 'Ordenes',
+            'icon' => 'fas fa-fw fa-tools',
+            'can' => 'Administrador configuracion',
         ],
     ],
 

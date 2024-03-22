@@ -35,13 +35,15 @@ Route::post('reporte', [App\Http\Controllers\SugerenciumController::class, 'repo
 Route::get('subcircuitos/{categoria_id}', [App\Http\Controllers\SugerenciumController::class, 'getSubcircuitos']);
 Route::get('generate-pdf', [App\Http\Controllers\SugerenciumController::class, 'generatePDF'])->name('generate-pdf.generatePDF');
 
+Route::get('getPertrechos/{tipoArma}', [App\Http\Controllers\PersonalPertrechoController::class, 'getPertrechos']);
 
+Route::resource('reportes', App\Http\Controllers\HistoricoPersonalPertrechoController::class)->middleware('auth');
 Route::resource('pertrechos', App\Http\Controllers\PertrechoController::class)->middleware('auth');
-Route::resource('personal-pertrechos', App\Http\Controllers\PersonalPertrechoController::class)->middleware('auth');
+Route::resource('personal-pertrechos', App\Http\Controllers\PersonalPertrechoController::class);
 Route::get('PersonalPertrechos', [App\Http\Controllers\PersonalPertrechoController::class, 'index']);
 Route::get('PersonalPertrechos/{id}', [App\Http\Controllers\PersonalPertrechoController::class, 'edit']);
 Route::put('PersonalPertrechos/{id}', [App\Http\Controllers\PersonalPertrechoController::class, 'update'])->name('PersonalPertrechos.update');
-
+Route::resource('SolicitudMantenimiento',App\Http\Controllers\SolicitudMantenimientoController::class)->middleware('auth');
 
 //Route::resource('PersonalSubcircuito', App\Http\Controllers\PersonalSubcircuitoController::class);
 Route::get('PersonalSubcircuito', [App\Http\Controllers\PersonalSubcircuitoController::class, 'index']);
@@ -53,7 +55,11 @@ Route::get('VehiculoSubcircuito/{id}', [App\Http\Controllers\VehiculoSubcircuito
 Route::put('VehiculoSubcircuito/{id}', [App\Http\Controllers\VehiculoSubcircuitoController::class, 'update'])->name('VehiculoSubcircuito.update');
 Route::get('SolicitudMantenimiento', [App\Http\Controllers\SolicitudMantenimientoController::class, 'index']);
 Route::put('SolicitudMantenimiento/{id_vehiculo}/{id_policia}', [App\Http\Controllers\SolicitudMantenimientoController::class, 'update'])->name('SolicitudMantenimiento.update');
+Route::get('OrdenCombustible', [App\Http\Controllers\OrdenCombustibleController::class, 'index']);
+Route::resource('OrdenCombustibles', App\Http\Controllers\OrdenCombustibleController::class);
+Route::put('OrdenCombustible/{id_vehiculo}/{id_policia}', [App\Http\Controllers\OrdenCombustibleController::class, 'update'])->name('OrdenCombustible.update');
 
+Route::get('Ordenes', [App\Http\Controllers\OrdenCombustibleController::class, 'ordenes']);
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Auth::routes();
@@ -65,4 +71,4 @@ Route::get('/home', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
+    

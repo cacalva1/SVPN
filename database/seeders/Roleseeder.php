@@ -15,6 +15,13 @@ class Roleseeder extends Seeder
      * @return void
      */
     public function run()
-    {
+    {   
+        //crear roles
+        $tecnico = Role::create(['Tecnico4' => 'writer']);
+
+
+        //crear permisos
+        Permission::create(['name' => 'pertrecho.index',
+    'descripcion'=>'Ver lista de pertrechos']);
     }
 }

@@ -25,6 +25,7 @@
                             <th>Nombres</th>
                             <th>Apellidos</th>
                             <th>Rango</th>
+                            <th>Tipo Arma</th>
                             <th>Arma Asignada</th>
                             <th>Acciones</th>
                         </tr>
@@ -37,6 +38,7 @@
                             <td>{{ $policia->nombres }}</td>
                             <td>{{ $policia->apellidos }}</td>
                             <td>{{ $policia->rango }}</td>
+                            <td>{{ $policia->tipoArma }}</td>
                             <td>
                                 @if ($policia->pertrecho_id)
                                 @if ($policia->estado == 'Activo')
@@ -49,7 +51,14 @@
                                 @endif
                             </td>
                             <td>
+
                                 <button class="btn btn-success" data-toggle="modal" data-target="#EditarAsignacion{{ $policia->id2 }}"><i class="fa fa-pencil">Asignar</i></button>
+                                <form action="{{ route('personal-pertrechos.destroy', $policia->id_p  ?? 0) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-danger btn-sm"><i class="fa fa-fw fa-trash"></i>
+                                        {{ __('Eliminar') }}</button>
+                                </form>
                             </td>
                         </tr>
                         @endif
@@ -93,14 +102,23 @@
                                 <input type="text" class="form-control" id="rango" name="rango" value="{{ $policia->rango }}" disabled>
                             </div>
                             <div class="form-group">
+                                <label for="tipoArma">Tipo Arma:</label>
+                                <select class="form-control" id="tipoArma" name="tipoArma" >
+                                    <option value="Corta">Corta</option>
+                                    <option value="Larga">Larga</option>
+                                </select>
+                            </div>
+
+
+                            <div class="form-group">
                                 <label for="pertrecho">Pertrecho:</label>
                                 <select class="form-control" id="pertrecho" name="pertrecho">
                                     <option value="">Seleccionar Arma</option>
                                     @foreach ($pertrechos as $pertrecho)
-                                    <option value="{{ $pertrecho->id }}" >
+                                    <option value="{{ $pertrecho->id }}">
                                         {{ $pertrecho->Nombre .'-'.$pertrecho->descripcion.': '.$pertrecho ->codigo}}
                                     </option>
-                                    
+
                                     @endforeach
                                 </select>
 
@@ -120,4 +138,33 @@
 
 @endforeach
 
-@endsection
+@stop
+@section('js')
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+<script>
+    document.getElementById('tipoArma').addEventListener('change', function() {
+        alert('asdfa');
+        var pertId = this.value;
+
+        // Realiza una solicitud AJAX para obtener las subcategorías
+        fetch('/getPertrechos/' + pertId)
+            .then(response => response.json())
+            .then(pertrechos => {
+                var subcategoriaSelect = document.getElementById('pertrecho');
+                subcategoriaSelect.innerHTML = '';
+
+                pertrechos.forEach(per => {
+                    var option = document.createElement('option');
+                    option.value = per.id;
+                    option.text = per.descripcion;
+                    subcategoriaSelect.add(option);
+
+                });
+            })
+            .catch(error => {
+                console.error('Error en la solicitud AJAX:', error);
+            });
+    });
+</script>
+@stop

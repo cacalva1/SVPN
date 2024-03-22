@@ -1,9 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Auth;
 use App\Models\Pertrecho;
 use Illuminate\Http\Request;
+
 
 /**
  * Class PertrechoController
@@ -18,6 +19,8 @@ class PertrechoController extends Controller
      */
     public function index()
     {
+
+        
         $pertrechos = Pertrecho::paginate();
 
         return view('pertrecho.index', compact('pertrechos'))
@@ -43,6 +46,7 @@ class PertrechoController extends Controller
      */
     public function store(Request $request)
     {
+
         request()->validate(Pertrecho::$rules);
 
         $pertrecho = Pertrecho::create($request->all());
@@ -106,4 +110,5 @@ class PertrechoController extends Controller
         return redirect()->route('pertrechos.index')
             ->with('success', 'Pertrecho deleted successfully');
     }
+
 }

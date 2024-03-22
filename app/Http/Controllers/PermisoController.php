@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Permiso;
 use App\Models\Role;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Permission;
 
 class PermisoController extends Controller
 {
@@ -22,10 +22,8 @@ class PermisoController extends Controller
     {
         $user = auth()->user();
 
-        $role = Role::findByName('Administrador');
-        $role->givePermissionTo('Administrador configuracion');
 
-        $permisos = Permiso::all();
+        $permisos = Permission::all();
         return view("user.roles.permisos", compact("permisos"));
     }
 
@@ -47,7 +45,7 @@ class PermisoController extends Controller
      */
     public function store(Request $request)
     {
-        $permiso = Permiso::create(['name' => $request->input('nombre'), 'guard_name' => 'web']);
+        $permiso = Permission::create(['name' => $request->input('nombre'),'descripcion' => 'permiso']);
         return back();
     }
 
@@ -93,7 +91,7 @@ class PermisoController extends Controller
      */
     public function destroy($id)
     {
-        $permisos = Permiso::find($id)->delete();
+        $permisos = Permission::find($id)->delete();
 
         return redirect()->route('permisos.index')
             ->with('success', 'Permiso eliminado correctamente');

@@ -3,11 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\PersonalPertrecho;
+use App\Models\HistoricoPersonalPertrecho;
 use Illuminate\Http\Request;
 use App\Models\Policia;
 use App\Models\Dependencia;
 use App\Models\Pertrecho;
 use Illuminate\Support\Facades\DB;
+use App\Utilities\fun_valida_tipoPetrecho;
 
 /**
  * Class PersonalPertrechoController
@@ -24,9 +26,9 @@ class PersonalPertrechoController extends Controller
     {
         $policias = Policia::all();
         $pertrechos = Pertrecho::all();
-        $personalPertrechos =  DB::select('select p.id as id2, p.cedula, p.nombres, p.apellidos, p.cedula,pertrecho_id, p.estado, p.rango, p.rol,d.id,p.id_dependencia,d.Nombre,d.descripcion, policia_id ,d.nombre,d.codigo, d.tipoArma
-        from policias p  left join personal_pertrecho on policia_id = p.id left join pertrecho d
-        on d.id = pertrecho_id');
+        $personalPertrechos =  DB::select('select p.id as id2, per.id as id_p, p.cedula, p.nombres, p.apellidos, p.cedula,pertrecho_id, p.estado, p.rango, p.rol,d.id,p.id_dependencia,d.Nombre,d.descripcion, policia_id ,d.nombre,d.codigo, d.tipoArma
+        from mantenimiento.policias p  left join mantenimiento.personal_pertrecho per on policia_id = p.id left join mantenimiento.pertrecho d
+        on d.id = pertrecho_id order by cedula');
         return view('personal-pertrecho.index', compact('policias', 'pertrechos', 'personalPertrechos'));
     }
 
@@ -78,7 +80,7 @@ class PersonalPertrechoController extends Controller
      */
     public function edit($id)
     {
-        dump($id);
+        
         $policia = Policia::findOrFail($id);
         $personalPertrechos = PersonalPertrecho::where('personal_id', $policia->id)->first();
         $pertrechos = Pertrecho::all();
@@ -95,24 +97,31 @@ class PersonalPertrechoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $pertrecho = Pertrecho::findOrFail($id);
+        $policia = Policia::findOrFail($id);
         $pertrecho_id = $request->input('pertrecho');
 
-        $personalPertrecho = PersonalPertrecho::where('policia_id', $pertrecho->id)->first();
+        $personalPertrecho = PersonalPertrecho::where('policia_id', $policia->id)->first();
 
-        if ($personalPertrecho) {
+       /* if ($personalPertrecho) {
             // Actualizar la dependencia existente
             $personalPertrecho->pertrecho_id = $pertrecho_id;
             $personalPertrecho->save();
-        } else {
+        } else {*/
             // Crear una nueva asignación en la tabla vehiculo_subcircuito
             $personalPertrecho = new PersonalPertrecho();
-            $personalPertrecho->policia_id = $pertrecho->id;
+            $personalPertrecho->policia_id = $policia->id;
             $personalPertrecho->pertrecho_id = $pertrecho_id;
             $personalPertrecho->save();
-        }
-
-        return redirect('VehiculoSubcircuito')->with('success', 'Asignacion correcta');
+        /*}*/
+    
+        $hispersonalPertrecho = new HistoricoPersonalPertrecho();
+        $hispersonalPertrecho->policia_id = $policia->id;
+        $hispersonalPertrecho->pertrecho_id = $pertrecho_id;
+        $hispersonalPertrecho->accion = 'Editar';
+        $hispersonalPertrecho->save();
+      //  return redirect('SolicitudMantenimiento') ->with('success', 'Solicitud creada correctamente.');
+        
+        return redirect('PersonalPertrechos')->with('success', 'Asignacion correcta');
     }
 
     /**
@@ -126,5 +135,13 @@ class PersonalPertrechoController extends Controller
 
         return redirect()->route('personal-pertrechos.index')
             ->with('success', 'PersonalPertrecho deleted successfully');
+    }
+    public function getPertrechos($tipoArma)
+    {
+        $pertrechos = DB::select('select   id, concat(Nombre,"-",descripcion,": ",codigo) as descripcion
+        from  mantenimiento.pertrecho mp
+        where tipoArma = ?', [$tipoArma]);
+
+        return response()->json($pertrechos);
     }
 }

@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Models;
-
+use App\Utilities\fun_valida_tipoPetrecho;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -20,11 +20,7 @@ use Illuminate\Database\Eloquent\Model;
 class PersonalPertrecho extends Model
 {
   protected $table = 'personal_pertrecho';
-    static $rules = [
-		'fecha_asignacion' => 'required',
-		'policia_id' => 'required',
-		'pertrecho_id' => 'required',
-    ];
+  
 
     protected $perPage = 20;
 
@@ -35,6 +31,13 @@ class PersonalPertrecho extends Model
      */
     protected $fillable = ['fecha_asignacion','policia_id','pertrecho_id'];
 
+
+    public static function rules()
+    {
+        return [
+            'tipoArma' => [new fun_valida_tipoPetrecho]
+        ];
+    }
 
 
 }

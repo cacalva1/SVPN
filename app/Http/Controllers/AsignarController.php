@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Role;
+use Spatie\Permission\Models\Role;
 use App\Models\Permiso;
 use App\Models\User;
 use Illuminate\Http\Request;
 
 class AsignarController extends Controller
 {
-
 
 
     /**

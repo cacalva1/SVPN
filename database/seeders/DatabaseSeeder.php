@@ -4,7 +4,8 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-
+use Spatie\Permission\Models\Role;
+use Spatie\Permission\Models\Permission;
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -15,9 +16,13 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
 
-        $user = User::find(1); // Obtén el usuario que quieres asignar
-        $user->assignRole('Administrador configuracion', 'web');
+           //crear roles
+           $tecnico = Role::create(['Tecnico4' => 'writer']);
 
+
+           //crear permisos
+           Permission::create(['name' => 'pertrecho.index',
+       'descripcion'=>'Ver lista de pertrechos']);
 
     }
 }

@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Models;
-
+use App\Utilities\fun_valida_tipoPetrecho;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -37,6 +37,11 @@ class Pertrecho extends Model
      */
     protected $fillable = ['tipoArma','Nombre','descripcion','codigo'];
 
-
+    public static function rules()
+    {
+        return [
+            'tipoArma' => [new fun_valida_tipoPetrecho]
+        ];
+    }
 
 }
